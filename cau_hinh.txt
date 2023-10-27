@@ -40,3 +40,8 @@ dependencies {
 
 
 }
+
+
+      <!--show query-->
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
+      <property name="eclipselink.logging.parameters" value="true"/>
