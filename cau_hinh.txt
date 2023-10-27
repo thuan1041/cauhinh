@@ -1,0 +1,42 @@
+--- persistence ---
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+  <persistence-unit name="ontapgkde1">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="jakarta.persistence.jdbc.driver"
+                value="org.mariadb.jdbc.Driver"/>
+      <property name="jakarta.persistence.jdbc.url"
+                value="jdbc:mariadb://localhost:3306/ontapgkde1_1?createDatabaseIfNotExist=true"/>
+      <property name="jakarta.persistence.jdbc.user" value="root"/>
+      <property name="jakarta.persistence.jdbc.password"
+                value="1234"/>
+      <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+      <!--show query-->
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
+      <property name="eclipselink.logging.parameters" value="true"/>
+    </properties>
+  </persistence-unit>
+</persistence>
+
+
+--- gradle----
+
+dependencies {
+  compileOnly('jakarta.platform:jakarta.jakartaee-web-api:9.1.0')
+  implementation('org.hibernate:hibernate-core:6.0.2.Final')
+  implementation('org.glassfish.jaxb:jaxb-runtime:3.0.2')
+
+  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+  //maria db
+  implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.2.0'
+  implementation group: 'org.eclipse.persistence', name: 'org.eclipse.persistence.jpa', version: '4.0.2'
+
+
+}
